@@ -46,7 +46,7 @@ def find_d(e, fi):
 
 def random_number():
     while True:
-        mod = random.randint(100, 10000)
+        mod = random.randint(100, 1000000)
         p, q = model(mod)
         
         if p and q:
