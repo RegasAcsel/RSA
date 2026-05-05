@@ -33,30 +33,15 @@ def is_prime_simple(num):
     return True  # если делителей нет, число простое
 
 def find_e(fi):     # Поиск числа e, которое является простым, меньше fi, и fi не делится на e
-    for e in range(2, fi):
-        if is_prime_simple(e):
-            # Проверяем, что fi не делится на e
-            if fi % e != 0:
-                return e
+    e = random.randint(2, fi)
+    if is_prime_simple(e):
+        # Проверяем, что fi не делится на e
+        if fi % e != 0:
+            return e
     return None
 
 def find_d(e, fi):
-    # Расширенный алгоритм Евклида для нахождения обратного элемента
-    def extended_gcd(a, b):
-        if a == 0:
-            return b, 0, 1
-        gcd, x1, y1 = extended_gcd(b % a, a)
-        x = y1 - (b // a) * x1
-        y = x1
-        return gcd, x, y
-    
-    gcd, x, y = extended_gcd(e, fi)
-    
-    if gcd != 1:
-        return None  # Обратного элемента не существует
-    
-    # x может быть отрицательным, приводим к положительному значению
-    d = x % fi
+    d = pow(e, -1, fi)
     return d
 
 def random_number():
